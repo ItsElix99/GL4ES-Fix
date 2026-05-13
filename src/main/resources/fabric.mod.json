@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "gl4esfix",
+  "version": "${version}",
+
+  "name": "GL4ES Fix",
+  "description": "",
+  "authors": [
+    "ItsElix99"
+  ],
+
+  "license": "MIT",
+  "icon": "assets/gl4esfix/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.itselix99.gl4esfix.GL4ESFix"
+    ],
+    "stationapi:event_bus": [
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ]
+  },
+  "mixins": [
+    "gl4esfix.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}
