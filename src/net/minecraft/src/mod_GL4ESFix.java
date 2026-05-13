@@ -1,0 +1,66 @@
+package net.minecraft.src;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+public class mod_GL4ESFix extends BaseMod {
+    private static final Map<String, String> versions = new HashMap<>();
+
+    public mod_GL4ESFix() {
+        System.out.println("[GL4ES Fix] Initializing GL4ES Fix");
+        System.out.println("[GL4ES Fix] Checking Minecraft version");
+
+        boolean success = false;
+
+        try {
+            Class<?> tessellator = Class.forName("net.minecraft.src.Tessellator");
+            Field convertQuadsToTriangles = tessellator.getDeclaredField("convertQuadsToTriangles");
+            convertQuadsToTriangles.setAccessible(true);
+            convertQuadsToTriangles.set(null, false);
+            success = true;
+            System.out.println("[GL4ES Fix] Fix applied successfully");
+        } catch (Throwable e) {
+            for (String name : versions.keySet()) {
+                try {
+                    Class<?> tessellator = Class.forName(name);
+                    Field instance = tessellator.getDeclaredField("a");
+                    instance.setAccessible(true);
+                    if (instance.getType().getName().equals(tessellator.getName())) {
+                        Field convertQuadsToTriangles = tessellator.getDeclaredField("b");
+                        convertQuadsToTriangles.setAccessible(true);
+                        convertQuadsToTriangles.set(null, false);
+                        success = true;
+                        System.out.println("[GL4ES Fix] Fix applied successfully for Minecraft " + versions.get(name));
+                        break;
+                    }
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (!success) {
+            throw new RuntimeException("Failed to apply GL4ES Fix: Unsupported Minecraft version");
+        }
+    }
+
+    public String Version() {
+        return "v1.0 (a1.1.2_01-b1.7.3)";
+    }
+
+    static {
+        versions.put("nw", "b1.7.x");
+        versions.put("ns", "b1.6.x");
+        versions.put("na", "b1.5.x");
+        versions.put("lj", "b1.4.x");
+        versions.put("kv", "b1.3.x");
+        versions.put("jy", "b1.2.x");
+        versions.put("jg", "b1.1.x");
+        versions.put("jf", "b1.0.x");
+        versions.put("is", "a1.2.6");
+        versions.put("ir", "a1.2.5-a1.2.3_04");
+        versions.put("ip", "a1.2.2");
+        versions.put("ij", "a1.2.1_01-a1.2.0_02");
+        versions.put("ho", "a1.1.2_01");
+    }
+}
