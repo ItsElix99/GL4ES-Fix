@@ -4,10 +4,16 @@
   "version": "${version}",
 
   "name": "GL4ES Fix",
-  "description": "",
+  "description": "A mod that switches rendering from triangles to quads to fix gl4es rendering issues in legacy Minecraft versions on mobile launchers",
   "authors": [
     "ItsElix99"
   ],
+
+  "contact": {
+    "homepage": "https://github.com/ItsElix99/GL4ES-Fix/",
+    "sources": "https://github.com/ItsElix99/GL4ES-Fix/",
+    "issues": "https://github.com/ItsElix99/GL4ES-Fix/issues"
+  },
 
   "license": "MIT",
   "icon": "assets/gl4esfix/icon.png",
