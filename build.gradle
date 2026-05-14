@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.itselix99'
+version = '1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.ow2.asm:asm:9.9.1")
+    implementation files("${System.getenv("JAVA_HOME")}/lib/tools.jar")
+}
+
+jar {
+    manifest {
+        attributes(
+                'Premain-Class': 'com.itselix99.gl4esfix.GL4ESFix',
+                'Can-Redefine-Classes': 'true',
+                'Can-Retransform-Classes': 'true'
+        )
+    }
+}
+
+shadowJar {
+    relocate 'org.objectweb.asm', 'com.itselix99.gl4esfix.shadow.org.objectweb.asm'
+}
