@@ -7,6 +7,7 @@ This is a simple mod that fixes gl4es rendering issues in legacy Minecraft versi
 ## Installation
 ### Babric and Risugami's ModLoader
 1. Install Babric or ModLoader
-2. Download the mod and place it in the mods folder
+2. Download the mod and place it in the `mods` folder
 ### Java Agent
-1. Download the java agent and place it in the .minecraft folder
+1. Download the java agent and place it in the `.minecraft` folder
+2. Add `-javaagent:GL4ESFix_v1.0-javaagent.jar -Dgl4esfix.mcVersion=<version>` to your jvm arguments
