@@ -7,14 +7,14 @@ import org.objectweb.asm.Opcodes;
 public class TessellatorClassVisitor extends ClassVisitor {
 
     public TessellatorClassVisitor(ClassVisitor classVisitor) {
-        super(Opcodes.ASM9, classVisitor);
+        super(Opcodes.ASM4, classVisitor);
     }
 
     public MethodVisitor visitMethod(final int access, final String name, final String descriptor, final String signature, final String[] exceptions) {
         MethodVisitor methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
 
         if (name.equals("<clinit>")) {
-            return new MethodVisitor(Opcodes.ASM9, methodVisitor) {
+            return new MethodVisitor(Opcodes.ASM4, methodVisitor) {
                 @Override
                 public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
                     if (opcode == Opcodes.PUTSTATIC && name.equals("b") && descriptor.equals("Z")) {
