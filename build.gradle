@@ -17,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.ow2.asm:asm:9.9.1")
-    implementation files("${System.getenv("JAVA_HOME")}/lib/tools.jar")
+    implementation("org.ow2.asm:asm:4.1")
+    //implementation files("${System.getenv("JAVA_HOME")}/lib/tools.jar")
 }
 
 jar {
